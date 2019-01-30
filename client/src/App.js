@@ -10,7 +10,8 @@ import {
   InputGroup,
   Input,
   InputGroupAddon,
-  Button
+  Button,
+  Spinner
 } from 'reactstrap';
 
 import Book from './Book';
@@ -21,7 +22,8 @@ class App extends Component {
     lend: null,
     lendList: [],
     name: '',
-    book: ''
+    book: '',
+    loading: false
   };
 
   getBooksList = () => {
@@ -30,6 +32,7 @@ class App extends Component {
       for(let i of res){
         lendList.push(i);
       }
+      this.setState({loading: false});
       this.setState({lendList})
     })
   };
@@ -50,17 +53,19 @@ class App extends Component {
   };
 
   deleteRecord = (id) => {
-    console.log("DELETE: ", id);
+    this.setState({loading: true});
     fetch('/api/books', {
       method: 'delete',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({id: id})
     }).then(res => res.json()).then(res => {
+      this.setState({loading: false});
       this.getBooksList();
     })
   };
 
   componentDidMount () {
+    this.setState({loading: true});
     this.getBooksList();
   }
 
@@ -97,7 +102,8 @@ class App extends Component {
             </Jumbotron>
           </Col>
         </Row>
-        <Book data={this.state.lendList} deleteRecord={this.deleteRecord}/>
+        {this.state.loading ? (<div><Spinner type="grow" color="info" /></div>)
+          : (<Book data={this.state.lendList} deleteRecord={this.deleteRecord}/>)}
       </Container>
     );
   }
