@@ -1,0 +1,38 @@
+{
+  "name": "lend-it",
+  "version": "1.0.0",
+  "description": "Lend something to someone...",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "npm start --prefix client",
+    "server": "nodemon server",
+    "start": "node server",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krenardrala/lend-it.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Krenar Drala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krenardrala/lend-it/issues"
+  },
+  "homepage": "https://github.com/krenardrala/lend-it#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "pg": "^7.8.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
