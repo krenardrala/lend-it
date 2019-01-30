@@ -1,1 +1,3 @@
-# lend-it
+# LendIT
+
+Lend something to someone...
