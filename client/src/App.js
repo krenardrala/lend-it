@@ -13,7 +13,7 @@ import {
   Button
 } from 'reactstrap';
 
-//import Weather from './Weather';
+import Book from './Book';
 
 class App extends Component {
 
@@ -26,7 +26,10 @@ class App extends Component {
 
   getBooksList = () => {
     fetch('/api/books').then(res => res.json()).then(res => {
-      let lendList = res.map(r => r.book);
+      let lendList = [];
+      for(let i of res){
+        lendList.push(i);
+      }
       this.setState({lendList})
     })
   };
@@ -44,6 +47,17 @@ class App extends Component {
 
   onChange = (e) => {
     this.setState({[e.target.name]: e.target.value })
+  };
+
+  deleteRecord = (id) => {
+    console.log("DELETE: ", id);
+    fetch('/api/books', {
+      method: 'delete',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({id: id})
+    }).then(res => res.json()).then(res => {
+      this.getBooksList();
+    })
   };
 
   componentDidMount () {
@@ -83,7 +97,7 @@ class App extends Component {
             </Jumbotron>
           </Col>
         </Row>
-        {/*<Weather data={this.state.weather}/>*/}
+        <Book data={this.state.lendList} deleteRecord={this.deleteRecord}/>
       </Container>
     );
   }

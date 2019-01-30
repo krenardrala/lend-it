@@ -18,6 +18,16 @@ class Books {
       callback(res);
     })
   }
+
+  static delete (data, callback) {
+    let id = data.id;
+
+    db.query('DELETE FROM lend WHERE id = ($1)', [id], function (err, res) {
+      if(err.error)
+        return callback(err);
+      callback(res);
+    })
+  }
 }
 
 module.exports = Books;
