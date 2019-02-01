@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Book from '../../components/ListBooksTable';
 
 import {
   Container,
@@ -13,8 +14,6 @@ import {
   Button,
   Spinner
 } from 'reactstrap';
-
-import Book from '../Book';
 
 class App extends Component {
 

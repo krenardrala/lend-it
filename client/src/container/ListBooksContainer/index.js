@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import fetchBooksAction from '../actions/bookActions';
-import addBookAction from '../actions/addBookAction';
-import deleteBookAction from '../actions/deleteBookAction';
+import fetchBooksAction from '../../actions/fetchBooksAction';
+import addBookAction from '../../actions/addBookAction';
+import deleteBookAction from '../../actions/deleteBookAction';
 
-import App from './App';
+import App from './ListBooksContainer';
 
 const mapState = state => ({
   books: state.books,
