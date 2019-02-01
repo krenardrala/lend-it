@@ -27,14 +27,9 @@ class App extends Component {
   };
 
   handleAddBook = () => {
-    fetch('/api/books', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({name: this.state.name, book: this.state.book})
-    }).then(res => res.json()).then(res => {
-      this.props.fetchBooksAction();
-      this.setState({name: '', book: ''});
-    })
+    this.props.addBookAction({name: this.state.name, book: this.state.book});
+    this.props.fetchBooksAction();
+    this.setState({name: '', book: ''});
   };
 
   onChange = (e) => {
@@ -43,14 +38,9 @@ class App extends Component {
 
   deleteRecord = (id) => {
     this.setState({loading: true});
-    fetch('/api/books', {
-      method: 'delete',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({id: id})
-    }).then(res => res.json()).then(res => {
-      this.setState({loading: false});
-      this.props.fetchBooksAction();
-    })
+    this.props.deleteBookAction(id);
+    this.setState({loading: false});
+    this.props.fetchBooksAction();
   };
 
   componentDidMount () {

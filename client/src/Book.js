@@ -10,7 +10,7 @@ class Book extends React.Component {
       return <div/>;
     return (
       <Row className="books">
-        <Col sm="12" md={{size: 4, offset: 4}}>
+        <Col sm="12" md={{size: 6, offset: 3}}>
           <Table bordered hover responsive>
             <thead>
             <tr>

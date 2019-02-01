@@ -13,7 +13,6 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
   let book = req.body;
-
   Books.insert(book, function (err, result) {
     if (err)
       return res.json(err);
@@ -23,7 +22,6 @@ router.post('/', function (req, res) {
 
 router.delete('/', function (req, res) {
   let id = req.body.id;
-
   Books.delete(id, function (err, result) {
     if (err)
       return res.json(err);
