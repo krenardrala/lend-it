@@ -14,7 +14,7 @@ import {
   Spinner
 } from 'reactstrap';
 
-import Book from './Book';
+import Book from '../Book';
 
 class App extends Component {
 
@@ -26,24 +26,13 @@ class App extends Component {
     loading: false
   };
 
-  getBooksList = () => {
-    fetch('/api/books').then(res => res.json()).then(res => {
-      let lendList = [];
-      for(let i of res){
-        lendList.push(i);
-      }
-      this.setState({loading: false});
-      this.setState({lendList})
-    })
-  };
-
   handleAddBook = () => {
     fetch('/api/books', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({name: this.state.name, book: this.state.book})
     }).then(res => res.json()).then(res => {
-      this.getBooksList();
+      this.props.fetchBooksAction();
       this.setState({name: '', book: ''});
     })
   };
@@ -60,13 +49,18 @@ class App extends Component {
       body: JSON.stringify({id: id})
     }).then(res => res.json()).then(res => {
       this.setState({loading: false});
-      this.getBooksList();
+      this.props.fetchBooksAction();
     })
   };
 
   componentDidMount () {
     this.setState({loading: true});
-    this.getBooksList();
+    this.props.fetchBooksAction();
+  }
+
+  componentWillReceiveProps(props) {
+    const { books } = props;
+    this.setState({lendList: books.books, loading: false});
   }
 
   render() {

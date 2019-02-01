@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import App from './App';
+import IntroScreen from './screen/IntroScreen';
 
+import { Provider } from 'react-redux';
+import store from './store'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><IntroScreen /></Provider>, document.getElementById('root'));
 
