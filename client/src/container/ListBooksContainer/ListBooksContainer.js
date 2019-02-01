@@ -3,8 +3,6 @@ import Book from '../../components/ListBooksTable';
 
 import {
   Container,
-  Navbar,
-  NavbarBrand,
   Row,
   Col,
   Jumbotron,
@@ -55,11 +53,6 @@ class App extends Component {
   render() {
     return (
       <Container fluid className="centered">
-        <Navbar dark color="dark">
-          <NavbarBrand href="/">
-            Lend IT
-          </NavbarBrand>
-        </Navbar>
         <Row>
           <Col>
             <Jumbotron>
