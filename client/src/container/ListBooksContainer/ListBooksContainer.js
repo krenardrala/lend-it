@@ -6,9 +6,7 @@ import {
   Row,
   Col,
   Jumbotron,
-  InputGroup,
   Input,
-  InputGroupAddon,
   Button,
   Spinner
 } from 'reactstrap';
@@ -58,23 +56,27 @@ class App extends Component {
             <Jumbotron>
               <h1 className="display-3">Lend it</h1>
               <p className="lead">Lend something to someone...</p>
-              <InputGroup>
-                <Input
-                  placeholder="Book Title"
-                  name="book"
-                  value={this.state.book}
-                  onChange={this.onChange}
-                />
-                <Input
-                  placeholder="Lent to..."
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.onChange}
-                />
-                <InputGroupAddon addonType="append">
+              <Row form>
+                <Col md={{size: 4, offset: 2}}>
+                    <Input
+                      placeholder="Book Title"
+                      name="book"
+                      value={this.state.book}
+                      onChange={this.onChange}
+                    />
+                </Col>
+                <Col md={4}>
+                    <Input
+                      placeholder="Lent to..."
+                      name="name"
+                      value={this.state.name}
+                      onChange={this.onChange}
+                    />
+                </Col>
+                <Col style={{marginTop: "15px"}} md={{size: 12}}>
                   <Button color="primary" onClick={this.handleAddBook}>Lend It</Button>
-                </InputGroupAddon>
-              </InputGroup>
+                </Col>
+              </Row>
             </Jumbotron>
           </Col>
         </Row>

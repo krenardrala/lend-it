@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import IntroScreen from '../screen/IntroScreen';
+import Home from '../screen/Home';
+import Login from '../screen/Login';
 import Users from './Users';
 import {
   Navbar,
@@ -10,6 +11,8 @@ import {
   ButtonGroup,
 } from 'reactstrap';
 import { FiUser } from "react-icons/fi";
+// eslint-disable-next-line
+import style from '../style/component/HeaderStyle.css';
 
 class Header extends React.Component {
   render() {
@@ -23,18 +26,19 @@ class Header extends React.Component {
             <Nav className="ml-auto" navbar>
               <ButtonGroup>
                 <Button>
-                  <Link to="/">Home</Link>
+                  <Link className="link" to="/home">Home</Link>
                 </Button>
                 <Button>
-                  <Link to="/users">Users</Link>
+                  <Link className="link" to="/users">Users</Link>
                 </Button>
                 <Button>
-                  <Link to="/"><FiUser/></Link>
+                  <Link className="link" to="/"><FiUser/></Link>
                 </Button>
               </ButtonGroup>
             </Nav>
           </Navbar>
-          <Route exact path="/" component={IntroScreen} />
+          <Route exact path="/" component={Login} />
+          <Route path="/home" component={Home} />
           <Route path="/users" component={Users} />
         </div>
       </Router>
