@@ -11,6 +11,7 @@ import {
   ButtonGroup,
 } from 'reactstrap';
 import { FiUser } from "react-icons/fi";
+import { GoHome } from "react-icons/go";
 // eslint-disable-next-line
 import style from '../style/component/HeaderStyle.css';
 
@@ -26,7 +27,7 @@ class Header extends React.Component {
             <Nav className="ml-auto" navbar>
               <ButtonGroup>
                 <Button>
-                  <Link className="link" to="/home">Home</Link>
+                  <Link className="link" to="/home"><GoHome style={{marginBottom: "2px"}}/> Home</Link>
                 </Button>
                 <Button>
                   <Link className="link" to="/users">Users</Link>
