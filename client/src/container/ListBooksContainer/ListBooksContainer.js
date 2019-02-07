@@ -23,8 +23,8 @@ class App extends Component {
 
   handleAddBook = () => {
     this.props.addBookAction({name: this.state.name, book: this.state.book});
-    this.props.fetchBooksAction();
     this.setState({name: '', book: ''});
+    this.props.fetchBooksAction();
   };
 
   onChange = (e) => {
@@ -34,6 +34,20 @@ class App extends Component {
   deleteRecord = (id) => {
     this.setState({loading: true});
     this.props.deleteBookAction(id);
+    this.setState({loading: false});
+    this.props.fetchBooksAction();
+  };
+
+  updateRecord = (data, oldData) => {
+    this.setState({loading: true});
+    let updatedData = {...data};
+    for (let key in data) {
+      if (data[key] === "") {
+        updatedData[key] = oldData[key];
+      }
+    }
+
+    this.props.updateBookAction(updatedData);
     this.setState({loading: false});
     this.props.fetchBooksAction();
   };
@@ -81,7 +95,7 @@ class App extends Component {
           </Col>
         </Row>
         {this.state.loading ? (<div><Spinner type="grow" color="info" /></div>)
-          : (<Book data={this.state.lendList} deleteRecord={this.deleteRecord}/>)}
+          : (<Book data={this.state.lendList} deleteRecord={this.deleteRecord} updateRecord={this.updateRecord}/>)}
       </Container>
     );
   }

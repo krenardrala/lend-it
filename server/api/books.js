@@ -29,4 +29,13 @@ router.delete('/', function (req, res) {
   })
 });
 
+router.put('/', function (req, res) {
+  let book = req.body;
+  Books.update(book, function (err, result) {
+    if (err)
+      return res.json(err);
+    return res.json(result);
+  })
+});
+
 module.exports = router;

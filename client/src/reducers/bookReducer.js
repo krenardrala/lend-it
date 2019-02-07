@@ -35,6 +35,14 @@ export default function reducer(state={
     resultState.fetching = false;
     resultState.books = action.payload;
   }
+  if(action.type === "UPDATE_BOOK_SUCCESS") {
+    resultState.fetching = false;
+    resultState.fetched = true;
+  }
+  if(action.type === "UPDATE_BOOK_ERROR") {
+    resultState.fetching = false;
+    resultState.books = action.payload;
+  }
 
   return resultState
 }

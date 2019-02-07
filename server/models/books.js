@@ -28,6 +28,17 @@ class Books {
       callback(res);
     })
   }
+
+  static update (lend, callback) {
+    let name = lend['updatedName'];
+    let book = lend['updatedBook'];
+    let id = lend['updating']
+    db.query('UPDATE lend SET name = ($1), book = ($2) WHERE id = ($3)', [name, book, id], function (err, res) {
+      if(err.error)
+        return callback(err);
+      callback(res);
+    })
+  }
 }
 
 module.exports = Books;
