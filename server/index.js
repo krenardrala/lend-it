@@ -14,6 +14,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use('/api/books', require('./api/books'));
+app.use('/api/users', require('./api/users'));
 
 if (ENV === 'production') {
   app.use(express.static(path.join()));

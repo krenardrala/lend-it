@@ -3,6 +3,7 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import Home from '../screen/Home';
 import Login from '../screen/Login';
 import Users from './Users';
+import SignUp from '../screen/SignUp';
 import {
   Navbar,
   NavbarBrand,
@@ -35,12 +36,16 @@ class Header extends React.Component {
                 <Button>
                   <Link className="link" to="/"><FiUser/></Link>
                 </Button>
+                <Button>
+                  <Link className="link" to="/signUp">Sign Up</Link>
+                </Button>
               </ButtonGroup>
             </Nav>
           </Navbar>
           <Route exact path="/" component={Login} />
           <Route path="/home" component={Home} />
           <Route path="/users" component={Users} />
+          <Route path="/signUp" component={SignUp} />
         </div>
       </Router>
     )
