@@ -1,10 +1,16 @@
 import axios from 'axios';
+import setAuthorizationToken from '../setAuthorizationToken'
+import jwt from 'jsonwebtoken';
 
 export default (data) => {
   return (dispatch) => {
     axios.post('/api/auth', data)
       .then((response) => {
-        dispatch({type: "LOGIN_SUCCESS", payload: response.data})
+        const token = response.data.token;
+        localStorage.setItem('jwtToken', token);
+        setAuthorizationToken(token);
+        console.log(jwt.decode(token));
+        dispatch({type: "LOGIN_SUCCESS", payload: jwt.decode(token)})
       })
       .catch((err) => {
         dispatch({type: "LOGIN_ERROR", payload: err})

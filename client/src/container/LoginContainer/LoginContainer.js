@@ -24,6 +24,7 @@ class LoginContainer extends Component {
 
   handleLogIn = (data) => {
     this.props.loginAction(data);
+    console.log("LOGIN SUCCESS: ", this.props.auth);
     //this.props.fetchBooksAction();
     //this.setState({name: '', book: ''});
   };
