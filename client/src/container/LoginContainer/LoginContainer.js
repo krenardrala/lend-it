@@ -22,10 +22,10 @@ class LoginContainer extends Component {
 
   };
 
-  handleLogIn = () => {
-    this.props.addBookAction({name: this.state.name, book: this.state.book});
-    this.props.fetchBooksAction();
-    this.setState({name: '', book: ''});
+  handleLogIn = (data) => {
+    this.props.loginAction(data);
+    //this.props.fetchBooksAction();
+    //this.setState({name: '', book: ''});
   };
 
   componentDidMount () {
@@ -56,7 +56,7 @@ class LoginContainer extends Component {
               <h1 className="display-3">Log In</h1>
               <p className="lead">Don't have an account ? Sign up here.</p>
             </Jumbotron>
-            <LoginForm login={this.handleLogIn}/>
+            <LoginForm handleLogin={this.handleLogIn}/>
           </Col>
         </Row>
       </Container>

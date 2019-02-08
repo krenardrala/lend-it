@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 
 app.use('/api/books', require('./api/books'));
 app.use('/api/users', require('./api/users'));
+app.use('/api/auth', require('./api/auth'));
 
 if (ENV === 'production') {
   app.use(express.static(path.join()));

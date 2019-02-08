@@ -20,6 +20,10 @@ class LoginForm extends Component {
     this.setState({[e.target.name]: e.target.value })
   };
 
+  handleLogin = () => {
+    let userData = { ...this.state };
+    this.props.handleLogin(userData);
+  };
 
   render() {
     return (
@@ -48,7 +52,7 @@ class LoginForm extends Component {
                 />
               </Col>
               <Col style={{marginTop: "15px"}} md={{size: 12}}>
-                <Button color="primary" onClick={this.handleAddBook}>Log In</Button>
+                <Button color="primary" onClick={this.handleLogin}>Log In</Button>
               </Col>
             </Row>
           </Col>
