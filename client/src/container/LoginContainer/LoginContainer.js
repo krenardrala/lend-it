@@ -30,7 +30,11 @@ class LoginContainer extends Component {
   };
 
   componentDidMount () {
+    console.log("LOGIN SUCCESS: ", this.props);
+  }
 
+  componentDidUpdate () {
+    console.log("LOGIN SUCCESS: ", this.props.auth);
   }
 
 

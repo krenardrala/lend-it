@@ -9,7 +9,6 @@ export default (data) => {
         const token = response.data.token;
         localStorage.setItem('jwtToken', token);
         setAuthorizationToken(token);
-        console.log(jwt.decode(token));
         dispatch({type: "LOGIN_SUCCESS", payload: jwt.decode(token)})
       })
       .catch((err) => {

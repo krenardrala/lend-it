@@ -2,7 +2,8 @@ export default function reducer(state={
   user: [],
   fetching: false,
   fetched: false,
-  error: null
+  error: null,
+  isAuthenticated: false
 },action) {
 
   const resultState = {...state};
@@ -23,10 +24,20 @@ export default function reducer(state={
     resultState.fetching = false;
     resultState.fetched = true;
     resultState.user = action.payload;
+    if(resultState.user){
+      resultState.isAuthenticated = true;
+    }else {
+      resultState.isAuthenticated = false;
+    }
   }
   if(action.type === "LOGIN_ERROR") {
     resultState.fetching = false;
     resultState.user = action.payload;
+  }
+  if(action.type === "LOGOUT_SUCCESS") {
+    resultState.fetching = false;
+    resultState.user = [];
+    resultState.isAuthenticated = false;
   }
   /*if(action.type === "DELETE_BOOK_SUCCESS") {
     resultState.fetching = false;
