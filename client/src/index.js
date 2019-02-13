@@ -11,7 +11,7 @@ import setAuthorizationToken from "./utils/setAuthorizationToken";
 
 if(localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);
-  store.dispatch({type: "LOGIN_SUCCESS", payload: jwt.decode(localStorage.jwtToken)})
+  store.dispatch({type: "AUTHENTICATION_SUCCESS", payload: jwt.decode(localStorage.jwtToken)})
 }
 
 const routing = (

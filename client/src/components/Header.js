@@ -12,8 +12,12 @@ import {
   Nav,
   Button,
   ButtonGroup,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from 'reactstrap';
-import { FiUser } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 // eslint-disable-next-line
 import style from '../style/component/HeaderStyle.css';
@@ -27,19 +31,27 @@ class Header extends React.Component {
   };
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated, user } = this.props.auth;
 
     const userLinks = (
       <ButtonGroup>
         <Button>
           <Link className="link" to="/home"><GoHome style={{marginBottom: "2px"}}/> Home</Link>
         </Button>
-        <Button>
-          <Link className="link" to="/users">Users</Link>
-        </Button>
-        <Button onClick={this.handleLogOut}>
-          <Link className="link" to="/"><FiUser/></Link>
-        </Button>
+        <UncontrolledDropdown nav inNavbar style={{background: '#6c757d'}}>
+          <DropdownToggle caret>
+            Hi, {user.username}
+          </DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>
+              <Link className="sub-menu-link" to="/users">Profile</Link>
+            </DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem onClick={this.handleLogOut}>
+              <Link to="/" className="sub-menu-link"><FiLogOut/> Sign Out</Link>
+            </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
       </ButtonGroup>
     );
 

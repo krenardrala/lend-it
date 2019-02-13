@@ -20,7 +20,7 @@ export default function reducer(state={
     resultState.fetched = true;
     resultState.user = action.payload;
   }
-  if(action.type === "LOGIN_SUCCESS") {
+  if(action.type === "AUTHENTICATION_SUCCESS") {
     resultState.fetching = false;
     resultState.fetched = true;
     resultState.user = action.payload;
@@ -30,7 +30,7 @@ export default function reducer(state={
       resultState.isAuthenticated = false;
     }
   }
-  if(action.type === "LOGIN_ERROR") {
+  if(action.type === "AUTHENTICATION_ERROR") {
     resultState.fetching = false;
     resultState.user = action.payload;
   }

@@ -9,10 +9,10 @@ export default (data) => {
         const token = response.data.token;
         localStorage.setItem('jwtToken', token);
         setAuthorizationToken(token);
-        dispatch({type: "LOGIN_SUCCESS", payload: jwt.decode(token)})
+        dispatch({type: "AUTHENTICATION_SUCCESS", payload: jwt.decode(token)})
       })
       .catch((err) => {
-        dispatch({type: "LOGIN_ERROR", payload: err})
+        dispatch({type: "AUTHENTICATION_ERROR", payload: err})
       })
   }
 }

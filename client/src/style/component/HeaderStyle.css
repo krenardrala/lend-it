@@ -2,3 +2,7 @@
   color: #fff;
   text-decoration: none;
 }
+.sub-menu-link, .sub-menu-link:hover {
+  color: dimgray;
+  text-decoration: none;
+}
