@@ -40,6 +40,15 @@ class Users {
     })
   }
 
+  static userPublicDataById (user, callback) {
+    let id = user['id'];
+    db.query('SELECT username, email, id, firstName, lastName, created_on FROM "user" WHERE id = ($1)', [id], function (err, res) {
+      if(err.error)
+        return callback(err);
+      callback(res);
+    })
+  }
+
   static delete (user, callback) {
     let id = user.id;
 

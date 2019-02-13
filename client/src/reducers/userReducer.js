@@ -1,5 +1,5 @@
 export default function reducer(state={
-  users: [],
+  userData: [],
   fetching: false,
   fetched: false,
   error: null
@@ -10,14 +10,14 @@ export default function reducer(state={
   if(action.type === "FETCH_USERS") {
     resultState.fetching = true
   }
-  if(action.type === "FETCH_USERS_ERROR") {
+  if(action.type === "FETCH_USER_ERROR") {
     resultState.fetching = false;
     resultState.error = action.payload;
   }
-  if(action.type === "FETCH_USERS_SUCCESS") {
+  if(action.type === "FETCH_USER_SUCCESS") {
     resultState.fetching = false;
     resultState.fetched = true;
-    resultState.users = action.payload;
+    resultState.userData = action.payload;
   }
   if(action.type === "CREATE_USER_SUCCESS") {
     resultState.fetching = false;
@@ -25,7 +25,7 @@ export default function reducer(state={
   }
   if(action.type === "CREATE_USER_ERROR") {
     resultState.fetching = false;
-    resultState.users = action.payload;
+    resultState.error = action.payload;
   }
   /*if(action.type === "DELETE_BOOK_SUCCESS") {
     resultState.fetching = false;

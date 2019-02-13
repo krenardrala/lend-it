@@ -5,10 +5,11 @@ let Users = require('../models/users');
 let router = express.Router();
 
 router.get('/', function (req, res) {
-  Users.retrieveAll(function (err, books) {
+  const id = req.query.ID;
+  Users.userPublicDataById({id: id}, function (err, user) {
     if (err)
       return res.json(err);
-    return res.json(books);
+    return res.json(user);
   });
 });
 
