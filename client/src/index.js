@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 
 import { Provider } from 'react-redux';
 import store from './store'
-import setAuthorizationToken from "./setAuthorizationToken";
+import setAuthorizationToken from "./utils/setAuthorizationToken";
 
 if(localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);

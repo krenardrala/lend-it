@@ -37,20 +37,6 @@ router.post('/', function (req, res) {
           return console.log("ERROR PASSWORD");
         }
       }
-      //return res.json(result);
-      /*if (result) {
-        console.log("RESULT");
-        if (bcrypt.compareSync(password, result['password'])) {
-          const token = jwt.sign({
-            id: result['id'],
-            username: result['username']
-          }, config.jwtSecret);
-          console.log("TOKEN: ", token);
-          return res.json({token})
-        }else {
-          return console.log("ERROR PASSWORD");
-        }
-      }*/
     })
   }
 });

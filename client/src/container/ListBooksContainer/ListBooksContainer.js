@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Book from '../../components/ListBooksTable';
-
+import PropTypes from 'prop-types';
 import {
   Container,
   Row,
@@ -28,6 +28,11 @@ class App extends Component {
     book: '',
     loading: false
   };
+
+  static contextTypes = {
+    router: PropTypes.object,
+  }
+
 
   handleAddBook = () => {
     this.props.addBookAction({name: this.state.name, book: this.state.book});
@@ -60,14 +65,23 @@ class App extends Component {
     this.props.fetchBooksAction();
   };
 
-  componentDidMount () {
-    this.setState({loading: true});
-    this.props.fetchBooksAction();
+  componentWillReceiveProps(props) {
+    const { books, isAuthenticated } = props;
+    if(!isAuthenticated) {
+      this.context.router.history.push('/');
+    }else {
+      this.setState({lendList: books.books, loading: false});
+    }
   }
 
-  componentWillReceiveProps(props) {
-    const { books } = props;
-    this.setState({lendList: books.books, loading: false});
+  componentDidMount () {
+    const { isAuthenticated } = this.props;
+    if (!isAuthenticated) {
+      this.context.router.history.push('/');
+    } else {
+      this.props.fetchBooksAction();
+      this.setState({loading: true});
+    }
   }
 
   render() {

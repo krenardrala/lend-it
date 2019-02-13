@@ -5,6 +5,7 @@ import Home from '../screen/Home';
 import Login from '../screen/Login';
 import Users from './Users';
 import SignUp from '../screen/SignUp';
+import requireAuth from '../utils/requireAuth';
 import {
   Navbar,
   NavbarBrand,
@@ -63,7 +64,7 @@ class Header extends React.Component {
           </Navbar>
           <Route exact path="/" component={Login} />
           <Route path="/home" component={Home} />
-          <Route path="/users" component={Users} />
+          <Route path="/users" component={requireAuth(Users)} />
           <Route path="/signUp" component={SignUp} />
         </div>
       </Router>
@@ -72,7 +73,6 @@ class Header extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log("Map state: ", state);
   return {
     auth: state.auth
   }

@@ -1,9 +1,10 @@
 let express = require('express');
 let Books = require('../models/books');
+const Auth = require('../middlewares/authenticate');
 
 let router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/', Auth.authenticate, function (req, res) {
   Books.retrieveAll(function (err, books) {
     if (err)
       return res.json(err);
@@ -11,7 +12,7 @@ router.get('/', function (req, res) {
   });
 });
 
-router.post('/', function (req, res) {
+router.post('/', Auth.authenticate, function (req, res) {
   let book = req.body;
   Books.insert(book, function (err, result) {
     if (err)
@@ -20,7 +21,7 @@ router.post('/', function (req, res) {
   })
 });
 
-router.delete('/', function (req, res) {
+router.delete('/', Auth.authenticate, function (req, res) {
   let id = req.body.id;
   Books.delete(id, function (err, result) {
     if (err)
@@ -29,7 +30,7 @@ router.delete('/', function (req, res) {
   })
 });
 
-router.put('/', function (req, res) {
+router.put('/', Auth.authenticate, function (req, res) {
   let book = req.body;
   Books.update(book, function (err, result) {
     if (err)
