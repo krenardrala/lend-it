@@ -14,6 +14,8 @@ class SignUpForm extends Component {
     username: '',
     password: '',
     email: '',
+    firstName: '',
+    lastName: '',
     loading: false
   };
 
@@ -32,12 +34,34 @@ class SignUpForm extends Component {
         <Row>
           <Col>
             <Row>
+              <Col md={{size: 2, offset: 4}}>
+                <Input
+                  placeholder="First Name"
+                  name="firstName"
+                  value={this.state.firstName}
+                  onChange={this.onChange}
+                  autoComplete="new-password"
+                />
+              </Col>
+              <Col md={{size: 2, offset: 0}}>
+                <Input
+                  placeholder="Last Name"
+                  name="lastName"
+                  value={this.state.lastName}
+                  onChange={this.onChange}
+                  autoComplete="new-password"
+                />
+              </Col>
+            </Row>
+            <br/>
+            <Row>
               <Col md={{size: 4, offset: 4}}>
                 <Input
                   placeholder="Username"
                   name="username"
-                  value={this.state.book}
+                  value={this.state.username}
                   onChange={this.onChange}
+                  autoComplete="new-password"
                 />
               </Col>
             </Row>
@@ -48,8 +72,9 @@ class SignUpForm extends Component {
                   placeholder="E-mail"
                   name="email"
                   type="email"
-                  value={this.state.name}
+                  value={this.state.email}
                   onChange={this.onChange}
+                  autoComplete="new-password"
                 />
               </Col>
             </Row>
@@ -60,8 +85,9 @@ class SignUpForm extends Component {
                     placeholder="Password"
                     name="password"
                     type="password"
-                    value={this.state.name}
+                    value={this.state.password}
                     onChange={this.onChange}
+                    autoComplete="new-password"
                   />
                 </Col>
               <Col style={{marginTop: "15px"}} md={{size: 12}}>

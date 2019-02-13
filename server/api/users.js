@@ -13,13 +13,15 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  const { username, password, email } = req.body;
+  const { username, password, email, firstName, lastName } = req.body;
   if(username && password && email) {
     const password_digest = bcrypt.hashSync(password, 10);
     let user = {
       username: username,
       password: password_digest,
-      email: email
+      email: email,
+      firstName: firstName,
+      lastName: lastName
     };
     Users.insert(user, function (err, result) {
       if (err)

@@ -2,7 +2,7 @@ const db = require('../database');
 
 class Users {
   static retrieveAll (callback) {
-    db.query('SELECT username, password, email, id, created_on, last_login from "user"', function (err, res) {
+    db.query('SELECT username, password, email, id, created_on, last_login, firstName, lastName from "user"', function (err, res) {
       if(err.error)
         return callback(err);
       callback(res);
@@ -13,7 +13,9 @@ class Users {
     let username = user['username'];
     let password = user['password'];
     let email = user['email'];
-    db.query('INSERT INTO "user" (username, password, email) VALUES ($1, $2, $3)', [username, password, email], function (err, res) {
+    let firstName = user['firstName'];
+    let lastName = user['lastName'];
+    db.query('INSERT INTO "user" (username, password, email, firstName, lastName) VALUES ($1, $2, $3, $4, $5)', [username, password, email, firstName, lastName], function (err, res) {
       if(err.error)
         return callback(err);
       callback(res);
