@@ -5,7 +5,8 @@ const Auth = require('../middlewares/authenticate');
 let router = express.Router();
 
 router.get('/', Auth.authenticate, function (req, res) {
-  Books.retrieveAll(function (err, books) {
+  const id = req.query.ID;
+  Books.retrieveAll({id: id}, function (err, books) {
     if (err)
       return res.json(err);
     return res.json(books);

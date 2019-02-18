@@ -9,7 +9,8 @@ import App from './ListBooksContainer';
 
 const mapState = state => ({
   books: state.books,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth
 });
 
 const mapActions = dispatch => ({

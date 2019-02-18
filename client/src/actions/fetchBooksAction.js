@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export default () => {
+export default (id) => {
   return (dispatch) => {
-    axios.get('/api/books')
+    axios.get('/api/books', {params: {ID: id}})
       .then((response) => {
         dispatch({type: "FETCH_BOOKS_SUCCESS", payload: response.data})
       })

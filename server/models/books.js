@@ -1,8 +1,9 @@
 const db = require('../database');
 
 class Books {
-  static retrieveAll (callback) {
-    db.query('SELECT book, name, date, id from lend', function (err, res) {
+  static retrieveAll (user, callback) {
+    let userId = user['id'];
+    db.query('SELECT book, name, date, id from lend WHERE user_id = ($1)', [userId], function (err, res) {
       if(err.error)
         return callback(err);
       callback(res);
@@ -12,7 +13,8 @@ class Books {
   static insert (lend, callback) {
     let name = lend['name'];
     let book = lend['book'];
-    db.query('INSERT INTO lend (name, book) VALUES ($1, $2)', [name, book], function (err, res) {
+    let userId = lend['userId'];
+    db.query('INSERT INTO lend (name, book, user_id) VALUES ($1, $2, $3)', [name, book, userId], function (err, res) {
       if(err.error)
         return callback(err);
       callback(res);

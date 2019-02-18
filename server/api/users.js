@@ -1,10 +1,11 @@
 let bcrypt = require('bcrypt');
 let express = require('express');
 let Users = require('../models/users');
+const Auth = require('../middlewares/authenticate');
 
 let router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/', Auth.authenticate, function (req, res) {
   const id = req.query.ID;
   Users.userPublicDataById({id: id}, function (err, user) {
     if (err)
@@ -40,14 +41,5 @@ router.delete('/', function (req, res) {
     return res.json(result);
   })
 });
-
-/*router.put('/', function (req, res) {
-  let book = req.body;
-  Users.update(book, function (err, result) {
-    if (err)
-      return res.json(err);
-    return res.json(result);
-  })
-});*/
 
 module.exports = router;

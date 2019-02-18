@@ -31,7 +31,7 @@ router.post('/', function (req, res) {
           const token = jwt.sign({
             id: result['0']['id'],
             username: result['0']['username']
-          }, config.jwtSecret);
+          }, config.jwtSecret, { expiresIn: '1h' });
           return res.json({token})
         }else {
           return console.log("ERROR PASSWORD");

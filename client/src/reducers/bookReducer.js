@@ -22,6 +22,7 @@ export default function reducer(state={
   if(action.type === "ADD_BOOK_SUCCESS") {
     resultState.fetching = false;
     resultState.fetched = true;
+    resultState.books = action.payload;
   }
   if(action.type === "ADD_BOOK_ERROR") {
     resultState.fetching = false;

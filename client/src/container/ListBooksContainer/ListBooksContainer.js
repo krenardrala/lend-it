@@ -27,9 +27,10 @@ class App extends Component {
 
 
   handleAddBook = () => {
-    this.props.addBookAction({name: this.state.name, book: this.state.book});
+    const { auth } = this.props;
+    this.props.addBookAction({name: this.state.name, book: this.state.book, userId: auth.user.id});
     this.setState({name: '', book: ''});
-    this.props.fetchBooksAction();
+    this.props.fetchBooksAction(auth.user.id);
   };
 
   onChange = (e) => {
@@ -37,13 +38,15 @@ class App extends Component {
   };
 
   deleteRecord = (id) => {
+    const { auth } = this.props;
     this.setState({loading: true});
     this.props.deleteBookAction(id);
     this.setState({loading: false});
-    this.props.fetchBooksAction();
+    this.props.fetchBooksAction(auth.user.id);
   };
 
   updateRecord = (data, oldData) => {
+    const { auth } = this.props;
     this.setState({loading: true});
     let updatedData = {...data};
     for (let key in data) {
@@ -54,7 +57,7 @@ class App extends Component {
 
     this.props.updateBookAction(updatedData);
     this.setState({loading: false});
-    this.props.fetchBooksAction();
+    this.props.fetchBooksAction(auth.user.id);
   };
 
   componentWillReceiveProps(props) {
@@ -67,11 +70,11 @@ class App extends Component {
   }
 
   componentDidMount () {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, auth } = this.props;
     if (!isAuthenticated) {
       this.context.router.history.push('/');
     } else {
-      this.props.fetchBooksAction();
+      this.props.fetchBooksAction(auth.user.id);
       this.setState({loading: true});
     }
   }
